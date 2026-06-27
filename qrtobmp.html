@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>QRtoBMP（無料）| テキストをQRコードのBMP画像に変換するコマンドラインツール - ラピッド・アプリケーションズ有限会社</title>
+  <meta name="description" content="QRtoBMPは、テキストファイルの内容をQRコード化してBMP画像に出力する無料のWindows用コマンドラインツールです。UTF-8日本語対応、インストール不要、Windows XP〜11対応。バッチ処理への組み込みに最適。MITライセンスのフリーソフト。">
+  <meta name="keywords" content="QRコード,QR生成,QRtoBMP,BMP,コマンドライン,CLI,フリーソフト,無料,バッチ処理,UTF-8,Windows,業務システム">
+  <meta name="author" content="ラピッド・アプリケーションズ有限会社">
+  <meta name="robots" content="index, follow">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="QRtoBMP（無料）| テキストをQRコードのBMP画像に変換するコマンドラインツール">
+  <meta property="og:description" content="テキストファイルをQRコード化してBMP画像に出力する無料のWindows用CLIツール。UTF-8日本語対応・インストール不要・Windows XP〜11対応。">
+  <meta property="og:url" content="https://rapid-applications.github.io/qrtobmp.html">
+  <meta property="og:site_name" content="ラピッド・アプリケーションズ有限会社">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="QRtoBMP（無料フリーソフト）">
+  <meta name="twitter:description" content="テキストをQRコードのBMP画像に変換する無料のWindows用コマンドラインツール。">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://rapid-applications.github.io/qrtobmp.html">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ========== Page-specific styles (freeware download page) ========== -->
+  <style>
+    /* Page hero (compact variant of .hero) */
+    .page-hero {
+      position: relative;
+      padding: 140px 0 72px;
+      border-bottom: 1px solid var(--navy-border);
+      overflow: hidden;
+    }
+    .page-hero .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--navy-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--navy-border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.15;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%);
+      pointer-events: none;
+    }
+    .page-hero-inner { position: relative; z-index: 1; max-width: 820px; }
+    .hero-eyebrow { margin-bottom: 20px; }
+    .hero-eyebrow .mono { font-size: 13px; color: var(--cyan); letter-spacing: 0.1em; }
+    .fw-title {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700; color: var(--white);
+      letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px;
+    }
+    .fw-title .free-badge {
+      display: inline-block; vertical-align: middle; margin-left: 14px;
+      padding: 5px 14px; border-radius: 999px;
+      background: var(--cyan); color: var(--navy-deep);
+      font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em;
+    }
+    .fw-subtitle { font-size: clamp(1rem, 2.2vw, 1.25rem); color: var(--off-white); font-weight: 500; margin-bottom: 20px; }
+    .fw-lead { font-size: 1rem; color: var(--text-primary); max-width: 680px; margin-bottom: 28px; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+    .hero-cta-group { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .btn .ico { width: 18px; height: 18px; }
+    .version-line { margin-top: 18px; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+
+    /* Feature grid */
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .feature-card {
+      background: var(--navy-card); border: 1px solid var(--navy-border);
+      border-radius: var(--radius-md); padding: 32px 28px;
+      transition: border-color var(--trans-base), transform var(--trans-base);
+    }
+    .feature-card:hover { border-color: var(--cyan-dim); transform: translateY(-3px); }
+    .feature-icon { color: var(--cyan); margin-bottom: 18px; }
+    .feature-icon svg { width: 36px; height: 36px; }
+    .feature-card h3 { color: var(--white); font-size: 1.05rem; margin-bottom: 10px; line-height: 1.5; }
+    .feature-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* Showcase */
+    .showcase-layout {
+      display: grid; grid-template-columns: 320px 1fr; gap: 48px; align-items: center;
+    }
+    .qr-frame {
+      background: var(--white); border-radius: var(--radius-lg); padding: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45); border: 1px solid var(--navy-border);
+    }
+    .qr-frame img { width: 100%; image-rendering: pixelated; }
+    .qr-caption { text-align: center; margin-top: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); word-break: break-all; }
+    .flow-steps { display: flex; flex-direction: column; gap: 18px; }
+    .flow-step { display: flex; gap: 18px; align-items: flex-start; }
+    .flow-num {
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+      background: var(--cyan-faint); border: 1px solid var(--cyan-dim);
+      color: var(--cyan); font-family: var(--font-mono); font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .flow-step h4 { color: var(--white); font-size: 1rem; margin-bottom: 4px; }
+    .flow-step p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* Code / terminal block */
+    .code-block {
+      background: var(--navy-deepest); border: 1px solid var(--navy-border);
+      border-radius: var(--radius-md); overflow: hidden; margin: 20px 0;
+    }
+    .code-head {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-bottom: 1px solid var(--navy-border);
+      background: var(--navy-card);
+    }
+    .code-dot { width: 11px; height: 11px; border-radius: 50%; background: var(--navy-hover); }
+    .code-title { margin-left: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+    .code-block pre {
+      margin: 0; padding: 18px 20px; overflow-x: auto;
+      font-family: var(--font-mono); font-size: 13px; line-height: 1.8; color: var(--off-white);
+    }
+    .code-block pre .cmt { color: var(--text-subtle); }
+    .code-block pre .cmd { color: var(--cyan); }
+
+    /* Download card */
+    .download-card {
+      max-width: 760px; margin: 0 auto;
+      background: linear-gradient(135deg, var(--navy-surface), var(--navy-card));
+      border: 1px solid var(--navy-border); border-radius: var(--radius-lg);
+      padding: 44px 40px; text-align: center; position: relative; overflow: hidden;
+    }
+    .download-card::before {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle at 50% 0%, var(--cyan-glow), transparent 55%);
+      pointer-events: none;
+    }
+    .download-card > * { position: relative; z-index: 1; }
+    .dl-filename { font-family: var(--font-mono); font-size: 1.1rem; color: var(--white); margin-bottom: 6px; }
+    .dl-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin: 18px 0 28px; }
+    .dl-meta span { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+    .dl-meta b { color: var(--cyan); font-weight: 400; }
+    .dl-hash {
+      margin-top: 22px; padding: 12px 16px; background: var(--navy-deepest);
+      border: 1px solid var(--navy-border); border-radius: var(--radius-sm);
+      font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);
+      word-break: break-all; text-align: left;
+    }
+    .dl-hash b { color: var(--text-primary); display: block; margin-bottom: 4px; }
+
+    /* Spec / changelog tables reuse company-table look */
+    .spec-table { width: 100%; border-collapse: collapse; }
+    .spec-table th, .spec-table td {
+      text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--navy-border);
+      font-size: 0.92rem; vertical-align: top;
+    }
+    .spec-table th {
+      width: 30%; color: var(--cyan); font-weight: 500; white-space: nowrap;
+      font-family: var(--font-mono); font-size: 0.82rem;
+    }
+    .spec-table td { color: var(--text-primary); }
+    .spec-wrap {
+      max-width: 860px; margin: 0 auto; background: var(--navy-card);
+      border: 1px solid var(--navy-border); border-radius: var(--radius-md); overflow: hidden;
+    }
+
+    /* Exit code table */
+    .exit-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .exit-table th, .exit-table td { padding: 10px 16px; border-bottom: 1px solid var(--navy-border); font-size: 0.9rem; text-align: left; }
+    .exit-table thead th { color: var(--cyan); font-family: var(--font-mono); font-size: 0.8rem; }
+    .exit-table td:first-child { font-family: var(--font-mono); color: var(--off-white); width: 90px; }
+    .exit-table td { color: var(--text-muted); }
+
+    /* Changelog */
+    .changelog { max-width: 760px; margin: 0 auto; }
+    .changelog-item { display: flex; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--navy-border); }
+    .changelog-ver { flex-shrink: 0; }
+    .changelog-ver .ver { font-family: var(--font-mono); color: var(--cyan); font-size: 0.95rem; }
+    .changelog-ver .date { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--text-subtle); margin-top: 2px; }
+    .changelog-body ul { color: var(--text-muted); font-size: 0.9rem; padding-left: 18px; list-style: disc; }
+
+    /* Generic prose block */
+    .prose { max-width: 760px; margin: 0 auto; }
+    .prose p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 14px; }
+    .prose h3 { color: var(--white); font-size: 1.05rem; margin: 24px 0 10px; }
+    .prose a { color: var(--cyan); text-decoration: underline; }
+    .note-box {
+      background: var(--cyan-faint); border-left: 3px solid var(--cyan-dim);
+      border-radius: var(--radius-sm); padding: 16px 20px; margin: 18px 0;
+      font-size: 0.88rem; color: var(--text-primary);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb { font-family: var(--font-mono); font-size: 12px; color: var(--text-subtle); margin-bottom: 24px; }
+    .breadcrumb a { color: var(--text-muted); }
+    .breadcrumb a:hover { color: var(--cyan); }
+
+    @media (max-width: 900px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .showcase-layout { grid-template-columns: 1fr; gap: 32px; }
+      .qr-frame { max-width: 280px; margin: 0 auto; }
+    }
+    @media (max-width: 640px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .download-card { padding: 32px 22px; }
+      .spec-table th { width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="ラピッド・アプリケーションズ有限会社 トップへ">
+        <span class="logo-mark">RA</span>
+        <span class="logo-text">ラピッド・アプリケーションズ有限会社</span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-nav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="global-nav" id="global-nav" role="navigation" aria-label="グローバルナビゲーション">
+        <ul>
+          <li><a href="#features">特長</a></li>
+          <li><a href="#usage">使い方</a></li>
+          <li><a href="#spec">仕様</a></li>
+          <li><a href="#download" class="nav-cta">ダウンロード</a></li>
+          <li><a href="index.html">会社トップ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="page-hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+      <div class="container page-hero-inner">
+        <p class="breadcrumb"><a href="index.html">HOME</a> &nbsp;/&nbsp; FREEWARE &nbsp;/&nbsp; QRtoBMP</p>
+        <div class="hero-eyebrow">
+          <span class="mono">// Freeware &mdash; QR Code Generator</span>
+        </div>
+        <h1 id="hero-title" class="fw-title">
+          QRtoBMP<span class="free-badge">無料</span>
+        </h1>
+        <p class="fw-subtitle">テキストを QRコードの BMP画像に変換する、コマンドラインツール</p>
+        <p class="fw-lead">
+          テキストファイルを読み込み、その内容を QRコード化してモノクロ BMP画像として出力します。
+          UTF-8（日本語）対応・インストール不要・追加ランタイム不要。
+          業務システムやバッチ処理（.bat）に組み込んで、QRコードを自動生成する用途に最適です。
+        </p>
+        <div class="hero-tags" aria-label="特徴">
+          <span class="tag">Windows XP〜11</span>
+          <span class="tag">32bit EXE</span>
+          <span class="tag">インストール不要</span>
+          <span class="tag">UTF-8 日本語対応</span>
+          <span class="tag">MIT License</span>
+        </div>
+        <div class="hero-cta-group">
+          <a href="download/QRtoBMP_1.0.0.zip" class="btn btn-primary btn-large" download>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            無料ダウンロード
+          </a>
+          <a href="#usage" class="btn btn-ghost">使い方を見る</a>
+        </div>
+        <p class="version-line">Version 1.0.0 &nbsp;/&nbsp; ZIP 133 KB &nbsp;/&nbsp; 2026.06.27 公開</p>
+      </div>
+    </section>
+
+    <!-- ========== FEATURES ========== -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label mono">// Features</p>
+          <h2 id="features-title" class="section-title">QRtoBMP の特長</h2>
+          <p class="section-lead">業務の現場で「そのまま使える」ことを重視したシンプルなツールです</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="7" y="5" width="26" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M14 14h12M14 20h12M14 26h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>単一EXEで動作</h3>
+            <p>インストーラ不要。EXEをコピーするだけで動きます。レジストリも一切使用しません。</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6l12 7v14l-12 7-12-7V13l12-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M8 13l12 7 12-7M20 20v14" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>追加DLL不要</h3>
+            <p>VC++ランタイム等の再頒布パッケージは不要。OS標準のDLL（kernel32）のみで動作します。</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M20 6c-4 4-4 24 0 28M20 6c4 4 4 24 0 28M7 20h26" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <h3>UTF-8 日本語対応</h3>
+            <p>日本語を含む UTF-8 テキストに対応。BOMあり/なしの両方を自動処理します。</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="9" width="28" height="22" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12 17l4 3-4 3M20 23h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>バッチ処理に最適</h3>
+            <p>用途別の終了コードを返すため、.bat の ERRORLEVEL で結果を判定し自動処理に組み込めます。</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 4v6M20 30v6M4 20h6M30 20h6M9 9l4 4M27 27l4 4M31 9l-4 4M13 27l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="20" cy="20" r="7" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <h3>Windows XP〜11対応</h3>
+            <p>Windows XP SP3 から Windows 11 まで、32bit / 64bit のいずれでも動作します。</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 5l4 4h6v6l4 4-4 4v6h-6l-4 4-4-4h-6v-6l-4-4 4-4V9h6l4-4z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                <path d="M16 20l3 3 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>オープンソース（MIT）</h3>
+            <p>MITライセンスのフリーソフト。商用・業務利用も無償でご利用いただけます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SHOWCASE ========== -->
+    <section class="section section-dark" id="showcase" aria-labelledby="showcase-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label mono">// How it works</p>
+          <h2 id="showcase-title" class="section-title">テキスト1つで、QR画像が完成</h2>
+          <p class="section-lead">入力テキストを渡すだけ。スマホのカメラでそのまま読み取れる QRコードを生成します</p>
+        </div>
+        <div class="showcase-layout">
+          <div class="reveal">
+            <div class="qr-frame">
+              <img src="images/sample_qr.png" alt="QRtoBMPで生成したQRコードのサンプル画像" width="296" height="296">
+            </div>
+            <p class="qr-caption">▲ 実際の出力例（読み取り先: https://rapid-apps.sakura.ne.jp/qrtobmp/）</p>
+          </div>
+          <div class="flow-steps reveal">
+            <div class="flow-step">
+              <div class="flow-num">1</div>
+              <div>
+                <h4>テキストファイルを用意</h4>
+                <p>QRコードにしたい文字列を UTF-8 のテキストファイルに保存します。</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-num">2</div>
+              <div>
+                <h4>コマンドを1行実行</h4>
+                <p><code>QRtoBMP.exe input.txt qrcode.bmp</code> を実行するだけ。</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-num">3</div>
+              <div>
+                <h4>BMP画像が出力される</h4>
+                <p>1モジュール8ピクセル・余白付きの読み取りやすいモノクロBMPが生成されます。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== USAGE ========== -->
+    <section class="section" id="usage" aria-labelledby="usage-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label mono">// Usage</p>
+          <h2 id="usage-title" class="section-title">使い方</h2>
+          <p class="section-lead">コマンドプロンプトから次の書式で実行します</p>
+        </div>
+        <div class="prose">
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span>
+              <span class="code-title">コマンドプロンプト</span>
+            </div>
+            <pre><span class="cmt">REM 書式</span>
+<span class="cmd">QRtoBMP.exe</span> &lt;入力テキスト&gt; &lt;出力BMP&gt;
+
+<span class="cmt">REM 例：input.txt の内容を qrcode.bmp に出力</span>
+<span class="cmd">QRtoBMP.exe</span> input.txt qrcode.bmp</pre>
+          </div>
+
+          <h3>バッチ処理での結果判定（終了コード）</h3>
+          <p>処理結果は終了コード（ERRORLEVEL）で返るため、バッチファイルに組み込んで自動判定できます。</p>
+          <table class="exit-table">
+            <thead>
+              <tr><th>コード</th><th>意味</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td>正常終了</td></tr>
+              <tr><td>1</td><td>引数エラー（指定が不足／過多）</td></tr>
+              <tr><td>2</td><td>入力ファイルの読み込み失敗</td></tr>
+              <tr><td>3</td><td>QRエンコード失敗（データ長が上限を超過 など）</td></tr>
+              <tr><td>4</td><td>出力ファイルの書き込み失敗</td></tr>
+            </tbody>
+          </table>
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span>
+              <span class="code-title">run.bat</span>
+            </div>
+            <pre><span class="cmd">QRtoBMP.exe</span> input.txt out.bmp
+<span class="cmd">if errorlevel 1</span> echo エラーが発生しました &amp; goto :eof
+echo QRコードを生成しました</pre>
+          </div>
+
+          <div class="note-box">
+            入力がすべて半角英数字記号（ASCII）の場合は互換性を優先して ECIなしで生成し、
+            日本語など非ASCII文字を含む場合は ECI 26（UTF-8）付きで生成します。
+            いずれもスマートフォンのカメラ／QRリーダーアプリで読み取れます。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DOWNLOAD ========== -->
+    <section class="section section-dark" id="download" aria-labelledby="download-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label mono">// Download</p>
+          <h2 id="download-title" class="section-title">ダウンロード</h2>
+          <p class="section-lead">フリーソフト（MITライセンス）です。どなたでも無償でご利用いただけます</p>
+        </div>
+        <div class="download-card reveal">
+          <p class="dl-filename">QRtoBMP_1.0.0.zip</p>
+          <div class="dl-meta">
+            <span>バージョン <b>1.0.0</b></span>
+            <span>サイズ <b>133 KB</b></span>
+            <span>公開日 <b>2026.06.27</b></span>
+            <span>料金 <b>無料</b></span>
+          </div>
+          <a href="download/QRtoBMP_1.0.0.zip" class="btn btn-primary btn-large" download>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            QRtoBMP をダウンロード
+          </a>
+          <p class="version-line">ZIPを展開し、QRtoBMP.exe を任意のフォルダにコピーしてご利用ください。</p>
+          <div class="dl-hash">
+            <b>SHA-256（改ざん検証用）</b>
+            a0be5eb1ed73432b3e695de33c756f32c2a870d2189ad638e615825f47d28863
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SPEC ========== -->
+    <section class="section" id="spec" aria-labelledby="spec-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label mono">// Specifications</p>
+          <h2 id="spec-title" class="section-title">動作環境・仕様</h2>
+        </div>
+        <div class="spec-wrap reveal">
+          <table class="spec-table">
+            <tbody>
+              <tr><th>ソフト名</th><td>QRtoBMP（キューアール・トゥ・ビーエムピー）</td></tr>
+              <tr><th>バージョン</th><td>1.0.0</td></tr>
+              <tr><th>種別</th><td>フリーソフト（MITライセンス）</td></tr>
+              <tr><th>対応OS</th><td>Windows XP SP3 / Vista / 7 / 8 / 8.1 / 10 / 11（32bit・64bit）</td></tr>
+              <tr><th>必要環境</th><td>追加のランタイム・ライブラリ不要（OS標準DLLのみ）</td></tr>
+              <tr><th>入力</th><td>UTF-8テキストファイル（BOMあり／なし対応）</td></tr>
+              <tr><th>出力</th><td>1bpp モノクロBMP画像（1モジュール=8ピクセル、余白4モジュール）</td></tr>
+              <tr><th>最大データ量</th><td>2,953バイト（QRバージョン40／誤り訂正レベルL／バイトモードの上限）</td></tr>
+              <tr><th>使用ライブラリ</th><td>QR Code generator library (C++版) &mdash; Project Nayuki（MITライセンス）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== LICENSE ========== -->
+    <section class="section section-dark" id="license" aria-labelledby="license-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label mono">// License &amp; Disclaimer</p>
+          <h2 id="license-title" class="section-title">ライセンス・免責事項</h2>
+        </div>
+        <div class="prose">
+          <h3>ライセンス</h3>
+          <p>
+            本ソフトは MITライセンスで提供されるフリーソフトです。個人・法人を問わず、商用・業務利用を含め無償でご利用いただけます。
+            QRコード生成には、Project Nayuki 氏による
+            <a href="https://www.nayuki.io/page/qr-code-generator-library" target="_blank" rel="noopener noreferrer">QR Code generator library（C++版・MITライセンス）</a>
+            を使用しています。ライセンス全文は配布物に同梱の LICENSE.txt をご覧ください。
+          </p>
+          <h3>転載・再配布について</h3>
+          <p>本ソフトはフリーソフトです。書庫ファイルの内容を改変しない限り、自由に再配布していただいて構いません。改変版を配布する場合は、MITライセンスの条件に従ってください。</p>
+          <h3>免責事項</h3>
+          <p>本ソフトの使用または使用不能から生じるいかなる損害についても、作者は一切の責任を負いません。ご利用は使用者ご自身の責任においてお願いいたします。</p>
+          <div class="note-box">
+            「QRコード」は株式会社デンソーウェーブの登録商標です。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHANGELOG ========== -->
+    <section class="section" id="changelog" aria-labelledby="changelog-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label mono">// Changelog</p>
+          <h2 id="changelog-title" class="section-title">更新履歴</h2>
+        </div>
+        <div class="changelog reveal">
+          <div class="changelog-item">
+            <div class="changelog-ver">
+              <span class="ver">v1.0.0</span>
+              <span class="date">2026.06.27</span>
+            </div>
+            <div class="changelog-body">
+              <ul>
+                <li>初版公開</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <span class="logo-mark">RA</span>
+        <span>ラピッド・アプリケーションズ有限会社</span>
+      </div>
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <a href="index.html">会社トップ</a>
+        <a href="#features">特長</a>
+        <a href="#usage">使い方</a>
+        <a href="#spec">仕様</a>
+        <a href="#download">ダウンロード</a>
+      </nav>
+      <p class="footer-copy">
+        <small>&copy; 2024 ラピッド・アプリケーションズ有限会社. All rights reserved.</small>
+      </p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
