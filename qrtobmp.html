@@ -6,16 +6,16 @@
 
   <!-- SEO -->
   <title>QRtoBMP（無料）| テキストをQRコードのBMP画像に変換するコマンドラインツール - ラピッド・アプリケーションズ有限会社</title>
-  <meta name="description" content="QRtoBMPは、テキストファイルの内容をQRコード化してBMP画像に出力する無料のWindows用コマンドラインツールです。UTF-8日本語対応、インストール不要、Windows XP〜11対応。バッチ処理への組み込みに最適。MITライセンスのフリーソフト。">
-  <meta name="keywords" content="QRコード,QR生成,QRtoBMP,BMP,コマンドライン,CLI,フリーソフト,無料,バッチ処理,UTF-8,Windows,業務システム">
+  <meta name="description" content="QRtoBMPは、テキストファイルの内容をQRコード化してBMP画像に出力する無料のWindows用コマンドラインツールです。UTF-8・Shift-JIS・UTF-16の文字コード自動判別、インストール不要、Windows XP〜11対応。バッチ処理への組み込みに最適。MITライセンスのフリーソフト。">
+  <meta name="keywords" content="QRコード,QR生成,QRtoBMP,BMP,コマンドライン,CLI,フリーソフト,無料,バッチ処理,UTF-8,Shift-JIS,SJIS,文字コード自動判別,Windows,業務システム">
   <meta name="author" content="ラピッド・アプリケーションズ有限会社">
   <meta name="robots" content="index, follow">
 
   <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="QRtoBMP（無料）| テキストをQRコードのBMP画像に変換するコマンドラインツール">
-  <meta property="og:description" content="テキストファイルをQRコード化してBMP画像に出力する無料のWindows用CLIツール。UTF-8日本語対応・インストール不要・Windows XP〜11対応。">
-  <meta property="og:url" content="https://rapid-apps.co.jp/qrtobmp.html">
+  <meta property="og:description" content="テキストファイルをQRコード化してBMP画像に出力する無料のWindows用CLIツール。UTF-8・Shift-JIS自動判別・インストール不要・Windows XP〜11対応。">
+  <meta property="og:url" content="https://rapid-applications.github.io/qrtobmp.html">
   <meta property="og:site_name" content="ラピッド・アプリケーションズ有限会社">
   <meta property="og:locale" content="ja_JP">
 
@@ -25,7 +25,7 @@
   <meta name="twitter:description" content="テキストをQRコードのBMP画像に変換する無料のWindows用コマンドラインツール。">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://rapid-apps.co.jp/qrtobmp.html">
+  <link rel="canonical" href="https://rapid-applications.github.io/qrtobmp.html">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -185,6 +185,10 @@
     .changelog-ver .ver { font-family: var(--font-mono); color: var(--cyan); font-size: 0.95rem; }
     .changelog-ver .date { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--text-subtle); margin-top: 2px; }
     .changelog-body ul { color: var(--text-muted); font-size: 0.9rem; padding-left: 18px; list-style: disc; }
+    .old-dl { margin-top: 10px; font-size: 0.82rem; }
+    .old-dl a { font-family: var(--font-mono); color: var(--text-muted); text-decoration: underline; }
+    .old-dl a:hover { color: var(--cyan); }
+    .old-dl-note { color: var(--text-subtle); margin-left: 4px; }
 
     /* Generic prose block */
     .prose { max-width: 760px; margin: 0 auto; }
@@ -254,18 +258,19 @@
         <p class="fw-subtitle">テキストを QRコードの BMP画像に変換する、コマンドラインツール</p>
         <p class="fw-lead">
           テキストファイルを読み込み、その内容を QRコード化してモノクロ BMP画像として出力します。
-          UTF-8（日本語）対応・インストール不要・追加ランタイム不要。
+          文字コードは UTF-8 / Shift-JIS / UTF-16 を自動判別。インストール不要・追加ランタイム不要。
           業務システムやバッチ処理（.bat）に組み込んで、QRコードを自動生成する用途に最適です。
         </p>
         <div class="hero-tags" aria-label="特徴">
           <span class="tag">Windows XP〜11</span>
           <span class="tag">32bit EXE</span>
           <span class="tag">インストール不要</span>
-          <span class="tag">UTF-8 日本語対応</span>
+          <span class="tag">文字コード自動判別</span>
+          <span class="tag">Shift-JIS 対応</span>
           <span class="tag">MIT License</span>
         </div>
         <div class="hero-cta-group">
-          <a href="download/QRtoBMP_1.0.0.zip" class="btn btn-primary btn-large" download>
+          <a href="download/QRtoBMP_1.1.0.zip" class="btn btn-primary btn-large" download>
             <svg class="ico" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -273,7 +278,7 @@
           </a>
           <a href="#usage" class="btn btn-ghost">使い方を見る</a>
         </div>
-        <p class="version-line">Version 1.0.0 &nbsp;/&nbsp; ZIP 133 KB &nbsp;/&nbsp; 2026.06.27 公開</p>
+        <p class="version-line">Version 1.1.0 &nbsp;/&nbsp; ZIP 135 KB &nbsp;/&nbsp; 2026.07.15 更新</p>
       </div>
     </section>
 
@@ -313,8 +318,8 @@
                 <path d="M20 6c-4 4-4 24 0 28M20 6c4 4 4 24 0 28M7 20h26" stroke="currentColor" stroke-width="1.5"/>
               </svg>
             </div>
-            <h3>UTF-8 日本語対応</h3>
-            <p>日本語を含む UTF-8 テキストに対応。BOMあり/なしの両方を自動処理します。</p>
+            <h3>文字コード自動判別</h3>
+            <p>UTF-8 / Shift-JIS / UTF-16 を自動判別。既存システムが出力したSJISテキストもそのまま渡せます。</p>
           </div>
           <div class="feature-card reveal">
             <div class="feature-icon" aria-hidden="true">
@@ -413,6 +418,23 @@
 <span class="cmd">QRtoBMP.exe</span> input.txt qrcode.bmp</pre>
           </div>
 
+          <h3>文字コードは自動判別されます</h3>
+          <p>入力ファイルの文字コードを自動で見分けるため、オプション指定は不要です。対応する文字コードは次の通りです。</p>
+          <table class="exit-table">
+            <thead>
+              <tr><th>文字コード</th><th>備考</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>UTF-8</td><td>BOMあり／なし どちらも可</td></tr>
+              <tr><td>Shift-JIS</td><td>CP932。日本語Windows標準の文字コード</td></tr>
+              <tr><td>UTF-16</td><td>BOMあり。LE／BE どちらも可</td></tr>
+            </tbody>
+          </table>
+          <p>
+            判別は「BOM → ASCII → UTF-8 → Shift-JIS」の順に行い、判別後は内部でUTF-8に統一してQRコードを生成します。
+            いずれにも該当しない場合はエラー（終了コード5）となります。
+          </p>
+
           <h3>バッチ処理での結果判定（終了コード）</h3>
           <p>処理結果は終了コード（ERRORLEVEL）で返るため、バッチファイルに組み込んで自動判定できます。</p>
           <table class="exit-table">
@@ -425,6 +447,7 @@
               <tr><td>2</td><td>入力ファイルの読み込み失敗</td></tr>
               <tr><td>3</td><td>QRエンコード失敗（データ長が上限を超過 など）</td></tr>
               <tr><td>4</td><td>出力ファイルの書き込み失敗</td></tr>
+              <tr><td>5</td><td>文字コードの判別失敗（対応外の文字コード・バイナリファイル等）</td></tr>
             </tbody>
           </table>
           <div class="code-block">
@@ -440,6 +463,7 @@ echo QRコードを生成しました</pre>
           <div class="note-box">
             入力がすべて半角英数字記号（ASCII）の場合は互換性を優先して ECIなしで生成し、
             日本語など非ASCII文字を含む場合は ECI 26（UTF-8）付きで生成します。
+            Shift-JISで入力した場合も内部でUTF-8に変換してから生成するため、
             いずれもスマートフォンのカメラ／QRリーダーアプリで読み取れます。
           </div>
         </div>
@@ -455,14 +479,14 @@ echo QRコードを生成しました</pre>
           <p class="section-lead">フリーソフト（MITライセンス）です。どなたでも無償でご利用いただけます</p>
         </div>
         <div class="download-card reveal">
-          <p class="dl-filename">QRtoBMP_1.0.0.zip</p>
+          <p class="dl-filename">QRtoBMP_1.1.0.zip</p>
           <div class="dl-meta">
-            <span>バージョン <b>1.0.0</b></span>
-            <span>サイズ <b>133 KB</b></span>
-            <span>公開日 <b>2026.06.27</b></span>
+            <span>バージョン <b>1.1.0</b></span>
+            <span>サイズ <b>135 KB</b></span>
+            <span>更新日 <b>2026.07.15</b></span>
             <span>料金 <b>無料</b></span>
           </div>
-          <a href="download/QRtoBMP_1.0.0.zip" class="btn btn-primary btn-large" download>
+          <a href="download/QRtoBMP_1.1.0.zip" class="btn btn-primary btn-large" download>
             <svg class="ico" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -471,7 +495,7 @@ echo QRコードを生成しました</pre>
           <p class="version-line">ZIPを展開し、QRtoBMP.exe を任意のフォルダにコピーしてご利用ください。</p>
           <div class="dl-hash">
             <b>SHA-256（改ざん検証用）</b>
-            a0be5eb1ed73432b3e695de33c756f32c2a870d2189ad638e615825f47d28863
+            ee72174069bcda943c878437de8b79ad9135d06f8b344bc399716a5d672617a0
           </div>
         </div>
       </div>
@@ -488,13 +512,13 @@ echo QRコードを生成しました</pre>
           <table class="spec-table">
             <tbody>
               <tr><th>ソフト名</th><td>QRtoBMP（キューアール・トゥ・ビーエムピー）</td></tr>
-              <tr><th>バージョン</th><td>1.0.0</td></tr>
+              <tr><th>バージョン</th><td>1.1.0（2026.07.15）</td></tr>
               <tr><th>種別</th><td>フリーソフト（MITライセンス）</td></tr>
               <tr><th>対応OS</th><td>Windows XP SP3 / Vista / 7 / 8 / 8.1 / 10 / 11（32bit・64bit）</td></tr>
               <tr><th>必要環境</th><td>追加のランタイム・ライブラリ不要（OS標準DLLのみ）</td></tr>
-              <tr><th>入力</th><td>UTF-8テキストファイル（BOMあり／なし対応）</td></tr>
+              <tr><th>入力</th><td>テキストファイル。文字コードは自動判別<br>UTF-8（BOMあり／なし）／ Shift-JIS（CP932）／ UTF-16 LE・BE（BOMあり）</td></tr>
               <tr><th>出力</th><td>1bpp モノクロBMP画像（1モジュール=8ピクセル、余白4モジュール）</td></tr>
-              <tr><th>最大データ量</th><td>2,953バイト（QRバージョン40／誤り訂正レベルL／バイトモードの上限）</td></tr>
+              <tr><th>最大データ量</th><td>2,953バイト（QRバージョン40／誤り訂正レベルL／バイトモードの上限）<br>UTF-8変換後のバイト数で判定するため、日本語のみの場合は約984文字</td></tr>
               <tr><th>使用ライブラリ</th><td>QR Code generator library (C++版) &mdash; Project Nayuki（MITライセンス）</td></tr>
             </tbody>
           </table>
@@ -538,6 +562,19 @@ echo QRコードを生成しました</pre>
         <div class="changelog reveal">
           <div class="changelog-item">
             <div class="changelog-ver">
+              <span class="ver">v1.1.0</span>
+              <span class="date">2026.07.15</span>
+            </div>
+            <div class="changelog-body">
+              <ul>
+                <li>入力ファイルの文字コード自動判別に対応（UTF-8 / Shift-JIS / UTF-16 LE / UTF-16 BE）</li>
+                <li>文字コード判別失敗を示す終了コード 5 を追加</li>
+                <li>データ長の上限判定を、UTF-8変換後のバイト数で行うよう修正</li>
+              </ul>
+            </div>
+          </div>
+          <div class="changelog-item">
+            <div class="changelog-ver">
               <span class="ver">v1.0.0</span>
               <span class="date">2026.06.27</span>
             </div>
@@ -545,6 +582,10 @@ echo QRコードを生成しました</pre>
               <ul>
                 <li>初版公開</li>
               </ul>
+              <p class="old-dl">
+                <a href="download/QRtoBMP_1.0.0.zip" download>QRtoBMP_1.0.0.zip をダウンロード</a>
+                <span class="old-dl-note">（旧バージョン／133 KB。通常は最新版をご利用ください）</span>
+              </p>
             </div>
           </div>
         </div>
