@@ -248,6 +248,50 @@
   }
 
   /* ========================================================
+     Contact form: Formspree AJAX submission
+  ======================================================== */
+  function initContactForm() {
+    const form = $('#contact-form');
+    const status = $('#form-status');
+    const submit = $('#form-submit');
+    if (!form || !status || !submit) return;
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      submit.disabled = true;
+      submit.textContent = '送信しています…';
+      status.className = 'form-status';
+      status.textContent = '';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+
+        if (!response.ok) throw new Error('Submission failed');
+
+        form.reset();
+        status.className = 'form-status form-status-success';
+        status.textContent = 'お問い合わせを送信しました。内容を確認のうえご連絡いたします。';
+      } catch (error) {
+        status.className = 'form-status form-status-error';
+        status.textContent = '送信できませんでした。時間をおいて再度お試しいただくか、fujiwara@rapid-apps.co.jp へご連絡ください。';
+      } finally {
+        submit.disabled = false;
+        submit.textContent = '入力内容を送信する';
+      }
+    });
+  }
+
+  /* ========================================================
      Init all
   ======================================================== */
   function init() {
@@ -259,6 +303,7 @@
     initTypingEffect();
     initScrollIndicator();
     initCounters();
+    initContactForm();
   }
 
   if (document.readyState === 'loading') {
