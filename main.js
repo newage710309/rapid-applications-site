@@ -92,7 +92,8 @@
         e.preventDefault();
 
         const top = target.getBoundingClientRect().top + window.scrollY - HEADER_H;
-        window.scrollTo({ top, behavior: 'smooth' });
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top, behavior: prefersReduced ? 'auto' : 'smooth' });
 
         // Update URL without jump
         history.pushState(null, '', hash);
