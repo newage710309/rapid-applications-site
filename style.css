@@ -433,6 +433,73 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ---------- SECTIONS ---------- */
+.capability-strip-section {
+  padding: 72px 0;
+  background: var(--navy-mid);
+  border-top: 1px solid var(--navy-border);
+  border-bottom: 1px solid var(--navy-border);
+}
+
+.capability-intro {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(340px, 1.2fr);
+  gap: 12px 48px;
+  align-items: end;
+  margin-bottom: 32px;
+}
+
+.capability-intro .section-label { grid-column: 1 / -1; margin: 0; }
+
+.capability-intro h2 {
+  color: var(--white);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1.4;
+}
+
+.capability-intro > p:last-child {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.capability-card {
+  min-height: 210px;
+  padding: 24px 20px;
+  background: var(--navy-card);
+  border: 1px solid var(--navy-border);
+  border-radius: var(--radius-md);
+}
+
+.capability-card-ai {
+  border-color: rgba(0, 212, 255, 0.45);
+  background: linear-gradient(145deg, var(--navy-card), var(--cyan-faint));
+}
+
+.capability-key {
+  display: block;
+  margin-bottom: 22px;
+  color: var(--cyan);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+}
+
+.capability-card h3 {
+  margin-bottom: 10px;
+  color: var(--white);
+  font-size: 1.05rem;
+}
+
+.capability-card p {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.75;
+}
+
 .section {
   padding: var(--section-pad) 0;
 }
@@ -665,6 +732,45 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ---------- EXPERTISE ---------- */
+.engagement-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.engagement-card {
+  padding: 28px;
+  background: var(--navy-card);
+  border: 1px solid var(--navy-border);
+  border-radius: var(--radius-lg);
+}
+
+.engagement-card h3 {
+  margin-bottom: 16px;
+  color: var(--white);
+  font-size: 1.05rem;
+}
+
+.check-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 20px;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--text-primary);
+  font-size: 0.86rem;
+}
+
+.check-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--cyan);
+}
+
 .expertise-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -901,6 +1007,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--text-primary);
   font-size: 0.9rem;
   line-height: 1.8;
+}
+
+.ai-note h3 {
+  margin-bottom: 8px;
+  color: var(--white);
+  font-size: 1rem;
 }
 
 /* ---------- PROCESS ---------- */
@@ -1396,9 +1508,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* Tablet (max 1024px) */
 @media (max-width: 1024px) {
+  .capability-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .problems-grid { grid-template-columns: repeat(2, 1fr); }
   .results-grid  { grid-template-columns: repeat(2, 1fr); }
   .expertise-layout { grid-template-columns: 1fr; gap: 40px; }
+  .engagement-grid { grid-template-columns: 1fr; }
   .tech-grid { grid-template-columns: repeat(3, 1fr); }
 
   .reasons-grid {
@@ -1421,6 +1535,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
   .br-sp { display: inline; }
   .br-pc { display: none; }
+
+  .capability-strip-section { padding: 56px 0; }
+  .capability-intro { grid-template-columns: 1fr; gap: 14px; }
+  .capability-intro .section-label { grid-column: auto; }
+  .capability-grid { grid-template-columns: 1fr; }
+  .capability-card { min-height: 0; }
 
   /* Header */
   .nav-toggle { display: flex; }
@@ -1478,6 +1598,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .points-columns,
   .flow-list,
   .reasons-grid-four { grid-template-columns: 1fr; }
+
+  .check-list { grid-template-columns: 1fr; }
 
   .ai-note { grid-template-columns: 1fr; gap: 10px; }
   .remote-note { text-align: left; }
