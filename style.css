@@ -1300,6 +1300,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: 0.75rem;
 }
 
+.contact-caution {
+  text-align: left;
+  background: var(--cyan-faint);
+  border-left: 3px solid var(--cyan-dim);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin-bottom: 36px;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
 .contact-note {
   margin-top: 16px;
   font-size: 0.8rem;
