@@ -110,7 +110,7 @@
 
     // Respect reduced motion preference
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
+    if (prefersReduced || !('IntersectionObserver' in window)) {
       elements.forEach(el => el.classList.add('visible'));
       return;
     }
@@ -127,13 +127,17 @@
       threshold: 0.08
     });
 
-    elements.forEach(el => observer.observe(el));
+    elements.forEach(el => {
+      el.classList.add('reveal-pending');
+      observer.observe(el);
+    });
   }
 
   /* ========================================================
      Active nav link on scroll (highlight current section)
   ======================================================== */
   function initActiveNav() {
+    if (!('IntersectionObserver' in window)) return;
     const sections = $$('section[id]');
     const navLinks = $$('.global-nav a[href^="#"]');
     if (!sections.length || !navLinks.length) return;
@@ -291,6 +295,22 @@
     });
   }
 
+  /* Service links select only a known inquiry category. */
+  function initContactIntent() {
+    const select = $('#contact-type');
+    if (!select) return;
+
+    $$('a[data-contact-type]').forEach(link => {
+      link.addEventListener('click', () => {
+        const value = link.dataset.contactType;
+        if (Array.from(select.options).some(option => option.value === value)) {
+          select.value = value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+  }
+
   /* ========================================================
      Init all
   ======================================================== */
@@ -304,6 +324,7 @@
     initScrollIndicator();
     initCounters();
     initContactForm();
+    initContactIntent();
   }
 
   if (document.readyState === 'loading') {
