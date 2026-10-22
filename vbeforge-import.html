@@ -6,7 +6,7 @@
 
   <!-- SEO -->
   <title>VBE Forge Import（無料）| VBAソースを一括インポートするVBEアドイン - ラピッド・アプリケーションズ有限会社</title>
-  <meta name="description" content="VBE Forge Import は、フォルダ内の .bas / .cls / .frm を Excel の VBA プロジェクトへ一括インポートする無料の VBE アドインです。同名モジュールは自動で置き換え、実行前に一覧で確認。Git で管理している VBA ソースの書き戻しに。管理者権限不要、32bit・64bit 両対応、MIT ライセンスのフリーソフト。">
+  <meta name="description" content="VBE Forge Import は、フォルダ内の .bas / .cls / .frm を Excel の VBA プロジェクトへ一括インポートする無料の VBE アドインです。同名モジュールは自動で置き換え、実行前に一覧で確認して取り込む対象を選択できます。Git で管理している VBA ソースの書き戻しに。管理者権限不要、32bit・64bit 両対応、MIT ライセンスのフリーソフト。">
   <meta name="keywords" content="VBA,VBE,アドイン,インポート,一括インポート,Excel,Git,バージョン管理,ソース管理,bas,cls,frm,フリーソフト,無料,VBE Forge,VBEForge">
   <meta name="author" content="ラピッド・アプリケーションズ有限会社">
   <meta name="robots" content="index, follow">
@@ -14,7 +14,7 @@
   <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="VBE Forge Import（無料）| VBAソースを一括インポートするVBEアドイン">
-  <meta property="og:description" content="フォルダ内の .bas / .cls / .frm を VBA プロジェクトへ一括インポート。同名モジュールは自動で置き換え、実行前に一覧で確認できる無料の VBE アドイン。">
+  <meta property="og:description" content="フォルダ内の .bas / .cls / .frm を VBA プロジェクトへ一括インポート。同名モジュールは自動で置き換え、実行前に一覧で確認・選択できる無料の VBE アドイン。">
   <meta property="og:url" content="https://rapid-apps.co.jp/vbeforge-import.html">
   <meta property="og:site_name" content="ラピッド・アプリケーションズ有限会社">
   <meta property="og:locale" content="ja_JP">
@@ -229,7 +229,13 @@
     .plan-table th, .plan-table td { padding: 7px 10px; border-bottom: 1px solid var(--navy-border); text-align: left; white-space: nowrap; }
     .plan-table thead th { color: var(--text-subtle); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 400; }
     .plan-table td { color: var(--off-white); font-family: var(--font-mono); }
-    .plan-table td:first-child { font-family: inherit; font-size: 0.8rem; }
+    .plan-table td:nth-child(2) { font-family: inherit; font-size: 0.8rem; }
+    .plan-table th:first-child, .plan-table td.chk { width: 1.5em; padding-right: 0; text-align: center; }
+    .plan-table td.chk { color: var(--cyan); font-family: inherit; font-size: 1rem; }
+    .plan-table td.chk.off { color: var(--text-muted); }
+    .plan-table td.chk.na { color: var(--text-subtle); }
+    .plan-table tr:has(td.chk.off) td:not(.chk) { color: var(--text-subtle); }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .plan-table .op-add { color: var(--cyan); }
     .plan-table .op-rep { color: var(--white); }
     .plan-table .op-doc { color: var(--text-primary); }
@@ -246,7 +252,7 @@
       .roadmap-grid { grid-template-columns: 1fr; }
       .download-card { padding: 32px 22px; }
       .spec-table th { width: auto; }
-      .plan-table th:nth-child(3), .plan-table td:nth-child(3) { display: none; }
+      .plan-table th:nth-child(4), .plan-table td:nth-child(4) { display: none; }
     }
   </style>
 </head>
@@ -311,7 +317,7 @@
           </a>
           <a href="#usage" class="btn btn-ghost">使い方を見る</a>
         </div>
-        <p class="version-line">Version 1.0.1 &nbsp;/&nbsp; ZIP 48 KB &nbsp;/&nbsp; 2026.10.22 公開</p>
+        <p class="version-line">Version 1.0.1 &nbsp;/&nbsp; ZIP 50 KB &nbsp;/&nbsp; 2026.10.22 公開</p>
         <p class="sibling-line">書き出し（エクスポート）には姉妹ソフト <a href="vbeforge-export.html">VBE Forge Export</a> をご利用ください。</p>
       </div>
     </section>
@@ -351,8 +357,8 @@
                 <path d="M14 14h12M14 20h12M14 26h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3>実行前に一覧で確認</h3>
-            <p>ファイルごとに「追加／置き換え／コード差し替え／スキップ」を一覧表示します。内容を確認してから［インポート実行］を押す2段階の操作です。</p>
+            <h3>実行前に一覧で確認・選択</h3>
+            <p>ファイルごとに「追加／置き換え／コード差し替え／スキップ」を一覧表示します。各行のチェックボックスで取り込む対象を選べ、［すべて選択］［すべて解除］でまとめて切り替えられます。</p>
           </div>
           <div class="feature-card reveal">
             <div class="feature-icon" aria-hidden="true">
@@ -406,19 +412,19 @@
               <div class="plan-wrap">
                 <table class="plan-table">
                   <thead>
-                    <tr><th>処理</th><th>モジュール名</th><th>ファイル</th></tr>
+                    <tr><th><span class="sr-only">選択</span></th><th>処理</th><th>モジュール名</th><th>ファイル</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td class="op-add">追加</td><td>modNew</td><td>modNew.bas</td></tr>
-                    <tr><td class="op-rep">置き換え</td><td>Module1</td><td>Module1.bas</td></tr>
-                    <tr><td class="op-rep">置き換え</td><td>clsDatabase</td><td>clsDatabase.cls</td></tr>
-                    <tr><td class="op-rep">置き換え</td><td>frmMain</td><td>frmMain.frm</td></tr>
-                    <tr><td class="op-doc">コード差し替え</td><td>ThisWorkbook</td><td>ThisWorkbook.cls</td></tr>
-                    <tr><td class="op-doc">コード差し替え</td><td>Sheet1</td><td>Sheet1.cls</td></tr>
-                    <tr><td class="op-skip">スキップ</td><td>Sheet2</td><td>Sheet2.cls</td></tr>
+                    <tr><td class="chk" aria-label="選択">&#9745;</td><td class="op-add">追加</td><td>modNew</td><td>modNew.bas</td></tr>
+                    <tr><td class="chk" aria-label="選択">&#9745;</td><td class="op-rep">置き換え</td><td>Module1</td><td>Module1.bas</td></tr>
+                    <tr><td class="chk off" aria-label="選択しない">&#9744;</td><td class="op-rep">置き換え</td><td>clsDatabase</td><td>clsDatabase.cls</td></tr>
+                    <tr><td class="chk" aria-label="選択">&#9745;</td><td class="op-rep">置き換え</td><td>frmMain</td><td>frmMain.frm</td></tr>
+                    <tr><td class="chk" aria-label="選択">&#9745;</td><td class="op-doc">コード差し替え</td><td>ThisWorkbook</td><td>ThisWorkbook.cls</td></tr>
+                    <tr><td class="chk" aria-label="選択">&#9745;</td><td class="op-doc">コード差し替え</td><td>Sheet1</td><td>Sheet1.cls</td></tr>
+                    <tr><td class="chk na" aria-label="選択できません">&ndash;</td><td class="op-skip">スキップ</td><td>Sheet2</td><td>Sheet2.cls</td></tr>
                   </tbody>
                 </table>
-                <p class="plan-note">※ 画面の一例です。Sheet2 は取り込み先に対応するシートが無い場合の例です。</p>
+                <p class="plan-note">※ 画面の一例です。clsDatabase はチェックを外して取り込まない例、Sheet2 は取り込み先に対応するシートが無いため選択できない例です。</p>
               </div>
             </div>
           </div>
@@ -440,8 +446,8 @@
             <div class="flow-step">
               <div class="flow-num">3</div>
               <div>
-                <h4>一覧を確認してインポート実行</h4>
-                <p>ファイルごとの処理内容を確認し、［インポート実行］をクリックします。完了すると追加・置き換え・スキップの件数が表示されます。</p>
+                <h4>一覧で確認・選択してインポート実行</h4>
+                <p>ファイルごとの処理内容を確認し、取り込む対象をチェックボックスで選んで［インポート実行］をクリックします。完了すると追加・置き換え・スキップの件数が表示されます。</p>
               </div>
             </div>
             <div class="flow-step">
@@ -523,7 +529,16 @@
               <tr><td>バージョン情報</td><td>製品名・バージョン・発行元を表示します。</td></tr>
             </tbody>
           </table>
-          <p>［次へ］をクリックすると取り込みの一覧が表示されます。内容を確認して［インポート実行］をクリックしてください。完了後、結果に問題がなければブックを保存します。</p>
+          <p>［次へ］をクリックすると取り込みの一覧が表示されます。</p>
+          <h3>4. 取り込む対象を選んで実行する</h3>
+          <p>
+            一覧の各行のチェックボックスで、取り込む対象を選べます。最初は取り込めるものがすべて選ばれています。
+            ［すべて選択］［すべて解除］でまとめて切り替えられます。スキップの行（取り込めないもの）は選べません。
+          </p>
+          <p>
+            内容を確認して［インポート実行］をクリックしてください。チェックを外した行は取り込まれず、結果ではスキップとして数えられます。
+            完了後、結果に問題がなければブックを保存します。
+          </p>
 
           <h3>取り込みの動作</h3>
           <table class="exit-table">
@@ -536,6 +551,7 @@
               <tr><td>ThisWorkbook / Sheet1 など</td><td>コードだけを差し替えます（オプション）</td></tr>
               <tr><td>対応するシートが無い</td><td>取り込みません（スキップ）</td></tr>
               <tr><td>フォルダに無いモジュール</td><td>何もしません（削除しません）</td></tr>
+              <tr><td>一覧でチェックを外した行</td><td>取り込みません（結果ではスキップとして数えます）</td></tr>
             </tbody>
           </table>
           <p>
@@ -587,7 +603,7 @@
           <p class="dl-filename">VBEForge.Import_1.0.1.zip</p>
           <div class="dl-meta">
             <span>バージョン <b>1.0.1</b></span>
-            <span>サイズ <b>48 KB</b></span>
+            <span>サイズ <b>50 KB</b></span>
             <span>公開日 <b>2026.10.22</b></span>
             <span>料金 <b>無料</b></span>
           </div>
@@ -600,7 +616,7 @@
           <p class="version-line">ZIPを任意のフォルダへ展開し、install.bat をダブルクリックしてください。</p>
           <div class="dl-hash">
             <b>SHA-256（改ざん検証用）</b>
-            f2c66480b717caadb9e70012fc5f122a23c7660cebfbcced29ab3f77ebbf17e8
+            bdb15e962f089dad38c6c31f5261ac0aaf28708b9a41faca2ab021f83de41c74
           </div>
           <p class="dl-mirror">書き出し用の <a class="text-link" href="vbeforge-export.html">VBE Forge Export</a> と組み合わせると、VBA ソースの書き出しと書き戻しを往復できます。</p>
         </div>
