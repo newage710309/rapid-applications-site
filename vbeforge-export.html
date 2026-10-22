@@ -185,6 +185,11 @@
     .roadmap-item.is-now { border-color: var(--cyan-dim); }
     .roadmap-item.is-now .rm-state { color: var(--cyan); }
     .roadmap-item p { font-size: 0.85rem; color: var(--text-muted); }
+    a.roadmap-item.is-link { display: block; transition: border-color var(--trans-base), transform var(--trans-base); }
+    a.roadmap-item.is-link:hover { border-color: var(--cyan); transform: translateY(-3px); }
+    .roadmap-item .rm-more { display: block; margin-top: 8px; color: var(--cyan); font-size: 0.8rem; }
+    .sibling-line { margin-top: 8px; font-size: 0.85rem; color: var(--text-muted); }
+    .sibling-line a { color: var(--cyan); text-decoration: underline; }
 
     /* Changelog */
     .changelog { max-width: 760px; margin: 0 auto; }
@@ -193,13 +198,20 @@
     .changelog-ver .ver { font-family: var(--font-mono); color: var(--cyan); font-size: 0.95rem; }
     .changelog-ver .date { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--text-subtle); margin-top: 2px; }
     .changelog-body ul { color: var(--text-muted); font-size: 0.9rem; padding-left: 18px; list-style: disc; }
+    .old-dl { margin-top: 10px; font-size: 0.82rem; }
+    .old-dl a { font-family: var(--font-mono); color: var(--text-muted); text-decoration: underline; }
+    .old-dl a:hover { color: var(--cyan); }
+    .old-dl-note { color: var(--text-subtle); margin-left: 4px; }
+    .old-dl-hash { display: block; margin-top: 4px; font-family: var(--font-mono); font-size: 11px; color: var(--text-subtle); word-break: break-all; }
 
     /* Generic prose block */
     .prose { max-width: 760px; margin: 0 auto; }
     .prose p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 14px; }
     .prose h3 { color: var(--white); font-size: 1.05rem; margin: 24px 0 10px; }
     .prose a { color: var(--cyan); text-decoration: underline; }
-    .prose code { font-family: var(--font-mono); font-size: 0.88em; color: var(--off-white); }
+    .prose code { font-family: var(--font-mono); font-size: 0.88em; color: var(--off-white); overflow-wrap: anywhere; }
+    .spec-table td, .exit-table td { overflow-wrap: anywhere; }
+    .showcase-layout > * { min-width: 0; }
     .note-box {
       background: var(--cyan-faint); border-left: 3px solid var(--cyan-dim);
       border-radius: var(--radius-sm); padding: 16px 20px; margin: 18px 0;
@@ -277,7 +289,7 @@
           <span class="tag">MIT License</span>
         </div>
         <div class="hero-cta-group">
-          <a href="download/VBEForge.Export_1.0.0.zip" class="btn btn-primary btn-large" download>
+          <a href="download/VBEForge.Export_1.0.1.zip" class="btn btn-primary btn-large" download>
             <svg class="ico" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -285,7 +297,8 @@
           </a>
           <a href="#usage" class="btn btn-ghost">使い方を見る</a>
         </div>
-        <p class="version-line">Version 1.0.0 &nbsp;/&nbsp; ZIP 39 KB &nbsp;/&nbsp; 2026.08.26 公開</p>
+        <p class="version-line">Version 1.0.1 &nbsp;/&nbsp; ZIP 44 KB &nbsp;/&nbsp; 2026.10.22 更新</p>
+        <p class="sibling-line">取り込み（書き戻し）には姉妹ソフト <a href="vbeforge-import.html">VBE Forge Import</a> をご利用ください。</p>
       </div>
     </section>
 
@@ -438,13 +451,28 @@
           <h3>1. インストール</h3>
           <p>
             ZIP を任意のフォルダへ展開し（例：<code>C:\Tools\VBEForge.Export\</code>）、Excel をすべて終了してから
-            <code>install.bat</code> をダブルクリックします。案内に従ってキーを押すと登録が始まり、
-            「インストールが完了しました。」と表示されたら閉じてください。
+            <code>install.bat</code> をダブルクリックします。黒い画面が開くので、案内に従って Enter キーを押すと登録が始まり、
+            「インストールが完了しました。」と表示されたら閉じてください。Excel を起動して VBE（Alt + F11）を開くと、
+            <code>アドイン</code> メニューに <code>VBE Forge Export</code> が追加されています。
           </p>
           <div class="note-box">
             <strong>登録後に DLL のフォルダを移動しないでください。</strong>
-            登録には DLL の絶対パス（CodeBase）が記録されます。移動した場合は再登録が必要です。
+            登録には DLL の絶対パス（CodeBase）が記録されます。移動した場合は install.bat を再度実行してください。
           </div>
+          <table class="exit-table">
+            <thead>
+              <tr><th>同梱ファイル</th><th>内容</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>install.bat</td><td>インストール用（ダブルクリック）</td></tr>
+              <tr><td>uninstall.bat</td><td>アンインストール用（ダブルクリック）</td></tr>
+              <tr><td>install.ps1<br>uninstall.ps1</td><td>インストール・アンインストール処理</td></tr>
+              <tr><td>VbeForgeRegistration.psm1</td><td>登録処理の共通部品（VBE Forge シリーズ共通）</td></tr>
+              <tr><td>VBEForge.Export.dll</td><td>本体</td></tr>
+              <tr><td>VBEForge.Core.dll</td><td>共通ライブラリ</td></tr>
+              <tr><td>README.txt<br>LICENSE.txt</td><td>説明書 ／ MIT License 全文</td></tr>
+            </tbody>
+          </table>
           <p>PowerShell から実行する場合も処理内容は同じです。</p>
           <div class="code-block">
             <div class="code-head">
@@ -518,9 +546,11 @@
 
           <h3>アンインストール</h3>
           <p>
-            <code>uninstall.bat</code> をダブルクリックし、Excel を再起動するとメニューから消えます。
+            Excel をすべて終了してから <code>uninstall.bat</code> をダブルクリックします。
             展開したフォルダは手動で削除してください。ログと設定は
-            <code>%LOCALAPPDATA%\VBEForge\</code> に残るため、不要な場合は削除してください。
+            <code>%LOCALAPPDATA%\VBEForge\</code> に残るため、不要な場合は削除してください
+            （VBE Forge Import と共用です。Import も使っている場合は残してください）。
+            レジストリはインストール時に書き込んだキーのみを削除し、他のソフトウェアには影響しません。
           </p>
 
           <h3>うまく動かないとき</h3>
@@ -543,14 +573,14 @@
           <p class="section-lead">フリーソフト（MITライセンス）です。どなたでも無償でご利用いただけます</p>
         </div>
         <div class="download-card reveal">
-          <p class="dl-filename">VBEForge.Export_1.0.0.zip</p>
+          <p class="dl-filename">VBEForge.Export_1.0.1.zip</p>
           <div class="dl-meta">
-            <span>バージョン <b>1.0.0</b></span>
-            <span>サイズ <b>39 KB</b></span>
-            <span>公開日 <b>2026.08.26</b></span>
+            <span>バージョン <b>1.0.1</b></span>
+            <span>サイズ <b>44 KB</b></span>
+            <span>更新日 <b>2026.10.22</b></span>
             <span>料金 <b>無料</b></span>
           </div>
-          <a href="download/VBEForge.Export_1.0.0.zip" class="btn btn-primary btn-large" download>
+          <a href="download/VBEForge.Export_1.0.1.zip" class="btn btn-primary btn-large" download>
             <svg class="ico" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -559,7 +589,7 @@
           <p class="version-line">ZIPを任意のフォルダへ展開し、install.bat をダブルクリックしてください。</p>
           <div class="dl-hash">
             <b>SHA-256（改ざん検証用）</b>
-            e9c697e6aa9eb7726ce1b5f2f429e9dde9f2b3487f84e750ecb76ac7584519ae
+            cdb16d4da5b6b41b92165412c7d787d52ed3e1c01a3eb4f19614a9d75a74f358
           </div>
           <p class="dl-mirror">Vector でも公開しています：<a class="text-link" href="https://www.vector.co.jp/soft/winnt/prog/se529500.html" target="_blank" rel="noopener">VBE Forge Export（Vector）</a></p>
         </div>
@@ -577,7 +607,7 @@
           <table class="spec-table">
             <tbody>
               <tr><th>ソフト名</th><td>VBE Forge Export（ブイビーイー・フォージ・エクスポート）</td></tr>
-              <tr><th>バージョン</th><td>1.0.0（2026.08.26）</td></tr>
+              <tr><th>バージョン</th><td>1.0.1（2026.10.22）</td></tr>
               <tr><th>種別</th><td>フリーソフト（MITライセンス）／ Excel VBE アドイン（COMアドイン）</td></tr>
               <tr><th>対応OS</th><td>Windows 10 / 11</td></tr>
               <tr><th>対応Excel</th><td>Microsoft Excel 2016 以降（Microsoft 365 を含む）／ 32bit・64bit 両対応</td></tr>
@@ -586,6 +616,8 @@
               <tr><th>出力形式</th><td>フラット構造（サブフォルダ分けなし）<br>.bas ／ .cls ／ .frm + .frx</td></tr>
               <tr><th>設定ファイル</th><td>%LOCALAPPDATA%\VBEForge\settings.json</td></tr>
               <tr><th>ログ</th><td>%LOCALAPPDATA%\VBEForge\Logs\VBEForge_yyyyMMdd.log</td></tr>
+              <tr><th>作者</th><td>藤原英司 ／ 発行元：ラピッド・アプリケーションズ有限会社</td></tr>
+              <tr><th>連絡先</th><td>info@rapid-apps.co.jp ／ <a class="text-link" href="index.html#contact">お問い合わせフォーム</a></td></tr>
               <tr><th>動作確認環境</th><td>Microsoft 365（64bit）／ Windows 11</td></tr>
               <tr><th>既知の制限</th><td>
                 ・パスワードで保護（ロック）された VBA プロジェクトはエクスポートできません<br>
@@ -612,14 +644,14 @@
         <div class="roadmap-grid reveal">
           <div class="roadmap-item is-now">
             <h3 class="rm-name">VBE Forge Export</h3>
-            <span class="rm-state">v1.0.0 &mdash; 公開中</span>
+            <span class="rm-state">v1.0.1 &mdash; 公開中（このページ）</span>
             <p>VBAプロジェクトの全オブジェクトを一括エクスポート</p>
           </div>
-          <div class="roadmap-item">
+          <a class="roadmap-item is-now is-link" href="vbeforge-import.html">
             <h3 class="rm-name">VBE Forge Import</h3>
-            <span class="rm-state">開発予定</span>
-            <p>ソースファイルからの一括インポート</p>
-          </div>
+            <span class="rm-state">v1.0.1 &mdash; 公開中</span>
+            <p>ソースファイルからの一括インポート <span class="rm-more">詳しく見る &rarr;</span></p>
+          </a>
           <div class="roadmap-item">
             <h3 class="rm-name">VBE Forge Backup</h3>
             <span class="rm-state">開発予定</span>
@@ -695,6 +727,18 @@
         <div class="changelog reveal">
           <div class="changelog-item">
             <div class="changelog-ver">
+              <span class="ver">v1.0.1</span>
+              <span class="date">2026.10.22</span>
+            </div>
+            <div class="changelog-body">
+              <ul>
+                <li>バージョン情報の Web サイト表記を変更</li>
+                <li>インストール処理を VBE Forge シリーズ共通の部品に変更</li>
+              </ul>
+            </div>
+          </div>
+          <div class="changelog-item">
+            <div class="changelog-ver">
               <span class="ver">v1.0.0</span>
               <span class="date">2026.08.26</span>
             </div>
@@ -706,6 +750,11 @@
                 <li>出力先フォルダとオプションを settings.json に保存し、次回の初期値として再利用</li>
                 <li>管理者権限不要のインストーラ（install.bat / uninstall.bat）を同梱</li>
               </ul>
+              <p class="old-dl">
+                <a href="download/VBEForge.Export_1.0.0.zip" download>VBEForge.Export_1.0.0.zip をダウンロード</a>
+                <span class="old-dl-note">（旧バージョン／39 KB。通常は最新版をご利用ください）</span>
+                <span class="old-dl-hash">SHA-256：e9c697e6aa9eb7726ce1b5f2f429e9dde9f2b3487f84e750ecb76ac7584519ae</span>
+              </p>
             </div>
           </div>
         </div>
@@ -727,6 +776,7 @@
         <a href="#usage">使い方</a>
         <a href="#spec">仕様</a>
         <a href="#download">ダウンロード</a>
+        <a href="vbeforge-import.html">VBE Forge Import</a>
         <a href="qrtobmp.html">QRtoBMP</a>
       </nav>
       <p class="footer-copy">
