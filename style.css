@@ -1609,6 +1609,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
 }
 
+/* Header nav: narrow desktop / tablet (769px-1180px) */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .logo-text { display: none; }
+  .global-nav ul { gap: 2px; }
+  .global-nav a { padding: 6px 8px; }
+  .nav-cta { padding: 6px 12px !important; }
+}
+
 /* Mobile (max 768px) */
 @media (max-width: 768px) {
   :root {
