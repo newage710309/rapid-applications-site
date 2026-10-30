@@ -1940,3 +1940,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .case-card { padding: 24px 20px; }
   .case-dl > div { grid-template-columns: 1fr; gap: 2px; }
 }
+
+/* Secondary button with clear contrast (works / products links) */
+.btn-outline {
+  background: rgba(5, 12, 26, 0.5);
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+.btn-outline:hover {
+  background: var(--cyan-glow);
+  color: var(--white);
+  transform: translateY(-1px);
+}
