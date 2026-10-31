@@ -55,3 +55,94 @@ main { padding-top: 20px; }
   .planner form { padding: 0 16px 20px; }
   .empty { padding: 30px 10px; }
 }
+
+.result-conditions { display: flex; align-items: center; justify-content: flex-end; gap: 14px; min-width: 0; }
+.result-conditions p { margin: 0; color: #7a867c; font-size: 12px; line-height: 1.6; }
+#change-conditions { flex: none; min-height: 44px; padding: 0 14px; border: 1px solid #c8d6c9; border-radius: 4px; background: #f8faf6; color: #536f5d; font-size: 12px; font-weight: bold; }
+#change-conditions:hover { background: #edf3eb; }
+#change-conditions:focus-visible { outline: 3px solid #a5bfac; outline-offset: 2px; }
+.planner { scroll-margin-top: 16px; }
+@media (max-width: 800px) {
+  .result-conditions { width: 100%; justify-content: space-between; }
+}
+
+/* 参考コーデは同じ人物の透過画像で表示する */
+.illustration img { width: 100%; height: 100%; object-fit: contain; display: block; }
+/* 同じ人物でトップスと靴を個別に試す */
+.outfit-editor { margin: 30px 0; padding: 30px; border: 1px solid #e0e6dc; border-radius: 8px; background: #fff; scroll-margin-top: 20px; }
+.editor-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+.editor-heading h2 { font-family: Georgia, "Yu Mincho", serif; font-size: 24px; font-weight: 500; margin: 8px 0 10px; line-height: 1.5; }
+.editor-heading p { margin: 0; color: #7a867c; line-height: 1.8; font-size: 12px; }
+.editor-badge { flex: none; padding: 8px 12px; color: #6b806f; background: #edf2e9; border-radius: 30px; font-size: 11px; }
+.editor-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: center; }
+.editor-preview { margin: 0; min-width: 0; background: #f0f2eb; border-radius: 6px; overflow: hidden; }
+.editor-image-wrap { height: 540px; padding: 12px; }
+.editor-image-wrap img { width: 100%; height: 100%; display: block; object-fit: contain; }
+.editor-preview figcaption { padding: 14px; background: #e8ede3; color: #566c5b; text-align: center; font-size: 12px; letter-spacing: .05em; }
+.editor-controls { min-width: 0; }
+.editor-controls fieldset { border: 0; padding: 0; margin: 0 0 26px; min-width: 0; }
+.editor-controls legend { padding: 0; margin-bottom: 12px; font-size: 14px; font-weight: bold; }
+.editor-controls legend > span { margin-right: 8px; color: #9aaf9a; font-size: 11px; letter-spacing: .08em; }
+.editor-options { display: grid; gap: 10px; }
+.style-option { display: block; position: relative; cursor: pointer; font-weight: normal; }
+.style-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.option-body { display: flex; align-items: center; gap: 14px; padding: 14px; border: 1px solid #dfe5dc; border-radius: 5px; min-height: 72px; background: #fcfdfb; color: #58695d; }
+.option-body strong, .option-body small { display: block; }
+.option-body strong { font-size: 13px; line-height: 1.5; }
+.option-body small { font-size: 11px; color: #849086; margin-top: 3px; }
+.option-check { margin-left: auto; font-size: 16px; opacity: 0; color: #5d7a63; }
+.style-option input:checked + .option-body { border-color: #779781; background: #f0f5ed; box-shadow: inset 0 0 0 1px #779781; }
+.style-option input:checked + .option-body .option-check { opacity: 1; }
+.style-option input:focus-visible + .option-body { outline: 3px solid #a5bfac; outline-offset: 3px; }
+.style-option:hover .option-body { border-color: #9ab09c; }
+.editor-fixed, .editor-note { color: #7a867c; font-size: 11px; line-height: 1.9; }
+.editor-status { min-height: 2.8em; margin: 14px 0 8px; color: #617f68; font-size: 12px; line-height: 1.6; }
+.editor-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.editor-actions button { min-height: 44px; border: 1px solid #cbd7c8; padding: 9px 12px; border-radius: 4px; background: #fff; color: #56715d; font-size: 11px; font-weight: bold; }
+.editor-actions button:hover { background: #f1f5ee; }
+.editor-actions button:focus-visible { outline: 3px solid #a5bfac; outline-offset: 2px; }
+.editor-note { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid #e8ede5; }
+@media (max-width: 800px) {
+  .outfit-editor { padding: 24px 20px; }
+  .editor-heading { flex-direction: column; gap: 10px; }
+  .editor-grid { gap: 22px; }
+  .editor-image-wrap { height: 500px; padding: 6px; }
+  .option-body { gap: 8px; padding: 12px 10px; }
+}
+@media (max-width: 600px) {
+  .outfit-editor { padding: 22px 16px; }
+  .editor-heading h2 { font-size: 22px; }
+  .editor-grid { grid-template-columns: 1fr; gap: 24px; }
+  .editor-image-wrap { height: 440px; }
+  .editor-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .option-body { flex-wrap: wrap; gap: 7px; padding: 12px 10px; min-height: 112px; position: relative; }
+  .option-body > span:nth-child(2) { width: 100%; }
+  .option-check { position: absolute; top: 16px; right: 12px; }
+  .editor-controls fieldset { margin-bottom: 22px; }
+  .editor-fixed { margin-top: 0; }
+  .editor-actions { display: grid; grid-template-columns: 1fr; }
+  .editor-actions button { min-height: 46px; font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* 10段階の服装を、選択した画像だけ読み込む */
+[hidden] { display: none !important; }
+.editor-tier-label { display: grid; gap: 9px; margin-bottom: 10px; font-size: 12px; }
+.editor-tier-label select { max-width: 100%; font-size: 14px; }
+.option-letter { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; background: #e9eee4; color: #6c846e; font-size: 12px; }
+.outfit-range { color: #627967; font-size: 12px; line-height: 1.7; margin: -10px 0 24px; }
+.image-message { color: #607a66; font-size: 12px; text-align: center; line-height: 1.8; margin: 100px 0 0; }
+.image-message button { display: block; margin: 12px auto; padding: 10px; border: 1px solid #b8c7b8; border-radius: 4px; color: #4e6c57; background: white; }
+.rain-reference { margin-top: 24px; border-top: 1px solid #e2e9df; padding-top: 14px; }
+.rain-reference summary { cursor: pointer; color: #56715e; padding: 10px 0; font-size: 12px; }
+.rain-reference-body { display: flex; align-items: center; gap: 24px; padding-top: 14px; }
+.rain-reference-body img { width: 130px; height: 195px; object-fit: contain; flex: none; }
+.rain-reference-body p { max-width: 460px; color: #7a867c; line-height: 1.9; font-size: 12px; }
+button:disabled { opacity: .55; cursor: default; }
+input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #a5bfac; outline-offset: 2px; }
+@media (max-width: 600px) {
+  .editor-tier-label select { font-size: 16px; }
+  .rain-reference-body { align-items: flex-start; gap: 12px; }
+  .rain-reference-body img { width: 90px; height: 150px; }
+  .rain-reference-body p { font-size: 11px; margin: 0; }
+}
