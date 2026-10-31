@@ -146,3 +146,6 @@ input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible
   .rain-reference-body img { width: 90px; height: 150px; }
   .rain-reference-body p { font-size: 11px; margin: 0; }
 }
+
+.site-credit { margin: 0; padding: 0 0 28px; text-align: center; font-size: 12px; line-height: 1.8; color: #69766c; }
+.site-credit a { color: #536f5d; text-underline-offset: 3px; }
