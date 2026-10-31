@@ -61,7 +61,7 @@ main { padding-top: 20px; }
 #change-conditions { flex: none; min-height: 44px; padding: 0 14px; border: 1px solid #c8d6c9; border-radius: 4px; background: #f8faf6; color: #536f5d; font-size: 12px; font-weight: bold; }
 #change-conditions:hover { background: #edf3eb; }
 #change-conditions:focus-visible { outline: 3px solid #a5bfac; outline-offset: 2px; }
-.planner { scroll-margin-top: 16px; }
+.planner, .result, .status { scroll-margin-top: 16px; }
 @media (max-width: 800px) {
   .result-conditions { width: 100%; justify-content: space-between; }
 }
